@@ -8,13 +8,15 @@ export default function GoogleButton({ onSocial }){
     	console.log(response);
     
         const { googleId, profileObj : { email, name } } = response;
-        
-        await onSocial({
-            socialId : googleId,
-            socialType : 'google',
-            email,
-            nickname : name
-        });
+
+        //웹사이트 서버 로그인 함수가 구현되어야 작동함
+        // await onSocial({
+        //     socialId : googleId,
+        //     socialType : 'google',
+        //     email,
+        //     nickname : name
+        // });
+        console.log(response);
     }
 
     const onFailure = (error) => {

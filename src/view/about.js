@@ -5,7 +5,7 @@ const About = (props) => {
   
     return (
       <div>
-        about page
+        <h2>About page</h2>
       </div>
     );
   }
