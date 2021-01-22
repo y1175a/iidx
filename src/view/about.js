@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState } from 'react';
 
-const About = () => {
+
+const About = (props) => {
+  
     return (
-        <div>
-        <h2>About</h2>
-        </div>
-    )
-}
+      <div>
+        about page
+      </div>
+    );
+  }
 
 export default About;
