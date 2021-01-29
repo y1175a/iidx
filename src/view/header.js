@@ -3,7 +3,6 @@ import {
     BrowserRouter as Router, 
     Route,
     Link,
-    Switch
 } from 'react-router-dom';
 import GoogleButton from '../google-login/googleButton';
 import headerStyle from '../resources/style/css/header.css';
