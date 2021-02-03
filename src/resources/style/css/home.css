@@ -1,0 +1,35 @@
+.home {
+    width: 480px;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel {
+    display: block;
+
+}
+
+.panel-header {
+    border: 1px solid lightgray;
+    border-bottom: 0px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: #EEE;
+    height: 1.5rem;
+    padding-bottom: 0.75rem;
+    padding-top: 0.75rem;
+    padding-left: 1rem;
+}
+
+.panel-body {
+    height: 240px;
+    border: 1px solid lightgray;
+    overflow-y: scroll;
+    padding-left: 1rem;
+    padding-bottom: 0.75rem;
+    padding-top: 0.75rem;
+    border-bottom-left-radius: 1rem;
+}

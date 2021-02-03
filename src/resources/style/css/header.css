@@ -1,0 +1,38 @@
+.header {
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lightblue;
+}
+
+.wrapper {
+    position: fixed;
+    left: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.wrapper ul li {
+    margin-left: 1rem;
+}
+
+.user {
+    position: fixed;
+    right: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user p {
+    margin-right: 1rem;
+}
