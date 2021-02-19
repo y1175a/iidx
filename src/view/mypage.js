@@ -1,10 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "../resources/style/css/mypage.css";
+// import Http from '../api';
+import axios from 'axios';
 
 const Mypage = () => {
     const daniList = ["七級", "六級", "五級", "四級", "三級", "二級", "一級",
                     "初段", "二段", "三段", "四段", "五段", "六段", "七段", "八段", "九段", "十段",
-                    "中伝", "皆伝"]
+                    "中伝", "皆伝"];
+    const [id, setId] = useState();
+    const [iidx_name, setName] = useState();
+    const [email, setEmail] = useState();
+
+    axios.get(`/api/user`).then(function(res) {
+        console.log(res);
+        console.log("res",res.data[0].id);
+        setId(res.data[0].id);
+        setName(res.data[0].iidx_name);
+        setEmail(res.data[0].email);
+        })
+    .catch(function(error) {
+        console.log(error);
+    })
+    .then(function() {
+
+    });
+    
+
     return (
         <div className="mypage">
             <h2>회원정보 수정</h2>
@@ -21,6 +42,11 @@ const Mypage = () => {
                 </select>
                 <button className="update-btn">변경하기</button>
             </form>
+            <div>test<br/>
+                id: {id}<br/>
+                name: {iidx_name}<br/>
+                email: {email}
+            </div>
         </div>
     )
 }
