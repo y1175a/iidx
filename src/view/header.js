@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import GoogleButton from "../google-login/googleButton";
 import "../resources/style/css/header.css";
+import * as authAPI from '../api/auth';
 
 const Header = () => {
-  const [ auth, setAuth ] = useState(false);
+  const [ auth, setAuth ] = useState({});
 
   return (
     <div className="header">
@@ -36,7 +37,7 @@ const Header = () => {
       <div className="user">
         {/* <GoogleButton /> */}
         {auth && <p>User님, 환영합니다.</p>}
-        <button onClick={() => { setAuth(!auth) }}> {auth ? "Logout" : "Login"} </button>
+        <a href='http://localhost:4000/api/auth/login'> {auth ? "Logout" : "Login"} </a>
       </div>
     </div>
   );
