@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import GoogleButton from "../google-login/googleButton";
 import "../resources/style/css/header.css";
 import * as authAPI from '../api/auth';
 
