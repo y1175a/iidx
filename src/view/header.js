@@ -1,10 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGIN, LOGOUT } from '../reducers/auth';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "../resources/style/css/header.css";
+import client from '../api/client';
 import * as authAPI from '../api/auth';
+import axios from "axios";
 
 const Header = () => {
-  const [ auth, setAuth ] = useState({});
+  const auth = useSelector(({ auth }) => ({
+    login: auth.login,
+    loading: auth.loading,
+    error: auth.error
+  }));
+
+  useEffect(() => {
+    client.get('/api/auth/login/success', { withCredentials: true })
+    console.log(auth);
+  }, []);
+
+  const dispatch = useDispatch();
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    window.open("http://localhost:4000/api/auth/login", "_self");
+  }
+
+  const onLogout = () => {
+    dispatch(LOGOUT());
+  }
 
   return (
     <div className="header">
@@ -35,8 +59,9 @@ const Header = () => {
       </div>
       <div className="user">
         {/* <GoogleButton /> */}
-        {auth && <p>User님, 환영합니다.</p>}
-        <a href='http://localhost:4000/api/auth/login'> {auth ? "Logout" : "Login"} </a>
+        {auth.login && <p>User님, 환영합니다.</p>}
+        {!auth.login && <button onClick={onLogin}> Login </button>}
+        {auth.login && <button onClick={onLogout}> Logout </button>}
       </div>
     </div>
   );
