@@ -1,50 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    isLogin: false,
-    isLoading: false,
+    login: null,
+    loading: false,
     error: null
   },
   reducers: {
-    LOGIN: {
-      reducer: (state) => {
-        state.isLoading = true;
+    LOGIN(state) {
+        state.loading = true;
         state.error = null;
-      }
     },
-    LOGIN_SUCCESS: {
-      reducer: (state) => {
-        state.isLogin = true;
-        state.isLoading = false;
-      }
+    LOGIN_SUCCESS(state, { payload: { uid, email } }) {
+        state.login = { uid, email };
+        state.loading = false;
     },
-    LOGIN_FAILURE: {
-      reducer: (state, action) => {
-        state.isLogin = false;
-        state.isLoading = false;
-        state.error = action.payload;
-      }
+    LOGIN_FAILURE(state, { payload }) {
+        state.login = null;
+        state.error = payload;
+        state.loading = false;
     },
-    LOGOUT: {
-      reducer: (state) => {
-        state.isLoading = true;
+    LOGOUT(state) {
+        state.loading = true;
         state.error = null;
-      }
     },
-    LOGOUT_SUCCESS: {
-      reducer: (state) => {
-        state.isLogin = true;
-        state.isLoading = false;
-      }
+    LOGOUT_SUCCESS(state) {
+        state.login = null;
+        state.loading = false;
     },
-    LOGOUT_FAILURE: {
-      reducer: (state, action) => {
-        state.isLogin = false;
-        state.isLoading = false;
-        state.error = action.payload;
-      }
+    LOGOUT_FAILURE(state, { payload }) {
+        state.error = payload;
+        state.loading = false;
     },
   },
 });
+
+export const {
+  LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE,
+  LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE
+} = authSlice.actions
+
+export default authSlice.reducer
