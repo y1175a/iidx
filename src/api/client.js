@@ -5,6 +5,7 @@ const client = axios.create({
     // header: {
     //     Authorization: 'bearer accessKey'
     // }
+    withCredentials: true
 });
 
 export default client;

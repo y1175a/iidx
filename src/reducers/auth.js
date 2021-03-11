@@ -8,12 +8,13 @@ const authSlice = createSlice({
     error: null
   },
   reducers: {
-    LOGIN(state) {
+    LOGIN(state, action) {
         state.loading = true;
         state.error = null;
     },
-    LOGIN_SUCCESS(state, { payload: { uid, email } }) {
-        state.login = { uid, email };
+    LOGIN_SUCCESS(state, { payload: { data } }) {
+        const { uid, email } = data.user;
+        state.login = { uid: uid, email: email };
         state.loading = false;
     },
     LOGIN_FAILURE(state, { payload }) {
@@ -29,8 +30,8 @@ const authSlice = createSlice({
         state.login = null;
         state.loading = false;
     },
-    LOGOUT_FAILURE(state, { payload }) {
-        state.error = payload;
+    LOGOUT_FAILURE(state, { payload: { err } }) {
+        state.error = err;
         state.loading = false;
     },
   },

@@ -14,12 +14,14 @@ const Header = () => {
     error: auth.error
   }));
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    client.get('/api/auth/login/success', { withCredentials: true })
+    dispatch(LOGIN()); 
     console.log(auth);
   }, []);
 
-  const dispatch = useDispatch();
+  
 
   const onLogin = (e) => {
     e.preventDefault();
@@ -46,10 +48,10 @@ const Header = () => {
                     <Link to="/about">About</Link>
                   </li>
                   <li>
-                    {auth && <Link to="/mypage">My page</Link>}
+                    {auth.login && <Link to="/mypage">My page</Link>}
                   </li>
                   <li>
-                    {auth && <Link to="/home">Upload</Link>}
+                    {auth.login && <Link to="/home">Upload</Link>}
                   </li>
                 </ul>
               </nav>
