@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { LOGIN, LOGOUT } from '../reducers/auth';
+import { authActions } from '../reducers/auth';
+import { userActions } from '../reducers/user';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "../resources/style/css/header.css";
 import client from '../api/client';
@@ -8,20 +9,25 @@ import * as authAPI from '../api/auth';
 import axios from "axios";
 
 const Header = () => {
-  const auth = useSelector(({ auth }) => ({
-    login: auth.login,
-    loading: auth.loading,
-    error: auth.error
-  }));
+  const { auth, user } = useSelector(({ auth, user }) => ({ auth, user }));
+
+  const { LOGIN, LOGOUT } = authActions;
+
+  const { GET_USER } = userActions;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(LOGIN()); 
-    console.log(auth);
+    if (!auth.login) {
+      dispatch(LOGIN());
+    }
   }, []);
 
-  
+  useEffect(() => {
+    if (auth.login){
+      dispatch(GET_USER(auth.login.uid));
+    }
+  }, [auth.login]);
 
   const onLogin = (e) => {
     e.preventDefault();
@@ -61,7 +67,7 @@ const Header = () => {
       </div>
       <div className="user">
         {/* <GoogleButton /> */}
-        {auth.login && <p>User님, 환영합니다.</p>}
+        {user.user && <p>{user.user.nickname}님, 환영합니다.</p>}
         {!auth.login && <button onClick={onLogin}> Login </button>}
         {auth.login && <button onClick={onLogout}> Logout </button>}
       </div>

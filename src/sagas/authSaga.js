@@ -1,7 +1,9 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE,
-    LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE } from '../reducers/auth';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { authActions } from '../reducers/auth';
 import * as authAPI from '../api/auth';
+
+const { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE,
+    LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE } = authActions;
 
 function* loginSaga(action) {
     try {

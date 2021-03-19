@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState: {
     loading: false,
@@ -8,12 +8,16 @@ export const userSlice = createSlice({
     error: null
   },
   reducers: {
-    GET_USER(state, action) {
-      state.loading = true
+    GET_USER: {
+      reducer: (state, action) => {
+        state.loading = true
+      },
+      prepare: (uid) => {
+        return { payload: { uid }};
+      }
     },
-    GET_USER_SUCCESS(state, { payload: { data } }) {
-      const { user } = data;
-      state.user = user;
+    GET_USER_SUCCESS(state, { payload }) {
+      state.user = payload;
       state.loading = false;
     },
     GET_USER_FAILURE(state, action) {
@@ -21,3 +25,7 @@ export const userSlice = createSlice({
     }
   },
 });
+
+export const userActions = userSlice.actions;
+
+export default userSlice.reducer;
