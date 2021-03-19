@@ -11,6 +11,9 @@ const App = () => {
       <Route path="/" component={Header}/>
       <div className="pages">
         <Route path="/home" component={Home} />
+        {/* <Route path="/songs" component={Songs} /> */}
+        {/* <Route path="/players" component={Players} /> */}
+        {/* <Route path="/topscores" component={Topscores} /> */}
         <Route path="/about" component={About} />
         <Route path="/mypage" component={Mypage} />
       </div>
