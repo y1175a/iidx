@@ -20,8 +20,9 @@ const userSlice = createSlice({
       state.user = payload;
       state.loading = false;
     },
-    GET_USER_FAILURE(state, action) {
+    GET_USER_FAILURE(state, { payload }) {
       state.loading = false;
+      state.error = payload;
     }
   },
 });

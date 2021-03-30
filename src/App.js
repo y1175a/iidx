@@ -4,6 +4,7 @@ import Home from './view/home';
 import About from './view/about';
 import Mypage from './view/mypage';
 import "./App.css";
+import Charts from './view/charts';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Route path="/" component={Header}/>
       <div className="pages">
         <Route path="/home" component={Home} />
+        <Route path="/charts" component={Charts} />
         {/* <Route path="/songs" component={Songs} /> */}
         {/* <Route path="/players" component={Players} /> */}
         {/* <Route path="/topscores" component={Topscores} /> */}

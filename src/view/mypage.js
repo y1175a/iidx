@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import "../resources/style/css/mypage.css";
 // import Http from '../api';
-import { userActions } from '../reducers/user';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Mypage = () => {
     const daniList = ["七級", "六級", "五級", "四級", "三級", "二級", "一級",
                     "初段", "二段", "三段", "四段", "五段", "六段", "七段", "八段", "九段", "十段",
                     "中伝", "皆伝"];
-    const [ form, setForm ] = useState({
-        
-    })
+
     const { auth, user } = useSelector(({ auth, user }) => ({ auth, user }));
 
-    const { GET_USER } = userActions;
-
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     if(auth.login){
-    //         dispatch(GET_USER(auth.login.id));
-    //     }
-    // }, []);
 
     const UnauthPage = (
         <div>
