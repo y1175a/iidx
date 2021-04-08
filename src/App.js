@@ -5,6 +5,7 @@ import About from './view/about';
 import Mypage from './view/mypage';
 import "./App.css";
 import Charts from './view/charts';
+import Chart from './view/chart';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <div className="pages">
         <Route path="/home" component={Home} />
         <Route path="/charts" component={Charts} />
+        <Route path="/chart/:id" component={Chart} />
         {/* <Route path="/songs" component={Songs} /> */}
         {/* <Route path="/players" component={Players} /> */}
         {/* <Route path="/topscores" component={Topscores} /> */}
