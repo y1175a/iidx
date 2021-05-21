@@ -2,11 +2,10 @@ import client from './client';
 
 export const getChart = ({ payload }) => {
     const { id } = payload;
-    return client.get(`/api/charts/${id}`);
+    return client.get(`/api/chart/${id}`);
 };
 
 
 export const getCharts = ({ payload }) => {
-    const { page } = payload;
-    return page ? client.get(`/api/charts?page=${page}`) : client.get(`/api/charts`);
+    return client.get(`/api/charts`);
 };
