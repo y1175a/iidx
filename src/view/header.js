@@ -9,7 +9,9 @@ import * as authAPI from '../api/auth';
 import axios from "axios";
 
 const Header = () => {
-  const { auth, user } = useSelector(({ auth, user }) => ({ auth, user }));
+  const auth = useSelector(state => state.auth);
+
+  const user = useSelector(state => state.user.user);
 
   const { LOGIN, LOGOUT } = authActions;
 
@@ -24,8 +26,8 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    if (auth.login){
-      dispatch(GET_USER(auth.login.uid));
+    if (auth.login && !user){
+      dispatch(GET_USER(auth.login.id));
     }
   }, [auth.login]);
 
@@ -70,7 +72,7 @@ const Header = () => {
       </div>
       <div className="user">
         {/* <GoogleButton /> */}
-        {user.user && <p>{user.user.nickname}님, 환영합니다.</p>}
+        {auth.login && user && <p>{user.nickname}님, 환영합니다.</p>}
         {!auth.login && <button onClick={onLogin}> Login </button>}
         {auth.login && <button onClick={onLogout}> Logout </button>}
       </div>
