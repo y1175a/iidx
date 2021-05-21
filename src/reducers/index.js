@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import authReducer from './auth';
 import userReducer from './user';
 import chartReducer from './chart';
@@ -6,6 +8,15 @@ import chartsReducer from './charts';
 // import { loadingSlice } from './loading';
 // import { playdataSlice } from './playdata';
 // import { userSlice } from './user';
+
+/**
+ * 
+ */
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['user']
+}
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -16,4 +27,6 @@ const rootReducer = combineReducers({
     // loading: loadingSlice.reducer,
 })
 
-export default rootReducer;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default persistedReducer;
