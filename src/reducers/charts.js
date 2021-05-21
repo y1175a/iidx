@@ -4,31 +4,24 @@ const chartsSlice = createSlice({
   name: 'charts',
   initialState: {
     list: null,
-    last: 0,
     loading: false,
     error: null
   },
   reducers: {
-    LOAD_CHARTS: {
-      reducer: (state, action) => {
+    LOAD_CHARTS(state) {
         state.list = null;
         state.loading = true;
         state.error = null;
-      },
-      prepare: (page) => {
-        return page ? { payload: { page } } : { payload: null }
-      }
     },
     LOAD_CHARTS_SUCCESS(state, { payload: { data } }) {
       state.loading = false;
-      const { list, last } = data
-      state.list = list;
-      state.last = last;
+      state.list = data;
     },
     LOAD_CHARTS_FAILURE(state, { payload }) {
       state.loading = false;
-      state.error = payload;
-    }
+      const { error } = payload
+      state.error = error;
+    },
   },
 });
 

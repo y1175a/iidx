@@ -12,8 +12,8 @@ const userSlice = createSlice({
       reducer: (state, action) => {
         state.loading = true
       },
-      prepare: (uid) => {
-        return { payload: { uid }};
+      prepare: (id) => {
+        return { payload: { id }};
       }
     },
     GET_USER_SUCCESS(state, { payload }) {
@@ -21,6 +21,21 @@ const userSlice = createSlice({
       state.loading = false;
     },
     GET_USER_FAILURE(state, { payload }) {
+      state.loading = false;
+      state.error = payload;
+    },
+    UPDATE_USER_INFO: {
+      reducer: (state) => {
+        state.loading = true;
+      },
+      prepare: (user) => {
+        return { payload: { ...user }};
+      }
+    },
+    UPDATE_USER_INFO_SUCCESS(state, { payload }) {
+      state.loading = false;
+    },
+    UPDATE_USER_INFO_FAILURE(state, { payload }) {
       state.loading = false;
       state.error = payload;
     }

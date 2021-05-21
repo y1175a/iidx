@@ -13,8 +13,8 @@ const authSlice = createSlice({
         state.error = null;
     },
     LOGIN_SUCCESS(state, { payload: { data } }) {
-        const { uid, email } = data.user;
-        state.login = { uid: uid, email: email };
+        const { id, uid, email } = data.user;
+        state.login = { id, uid, email };
         state.loading = false;
     },
     LOGIN_FAILURE(state, { payload }) {
