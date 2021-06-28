@@ -96,7 +96,7 @@ const ChartListItem = ({ chart }) => {
     );
 }
 
-const ChartsList = React.memo(({ list, isVersionChecked, isLevelChecked, isDifficultyChecked }) => {
+const ChartsList = React.memo(({ list, isVersionChecked, isLevelChecked, isDifficultyChecked, limit }) => {
     const filterList = list => list.filter(item => isVersionChecked.find(element => element.value.match(item.version)).checked &&
                     isLevelChecked.find(element => element.value === item.lv).checked &&
                     isDifficultyChecked.find(element => element.value.match(item.diff)).checked);
@@ -115,7 +115,7 @@ const ChartsList = React.memo(({ list, isVersionChecked, isLevelChecked, isDiffi
                     </tr>
                 </thead>
                 <tbody>
-                    {list && filterList(list).map(chart => <ChartListItem chart={chart} />)}
+                    {list && filterList(list).slice(0, limit).map(chart => <ChartListItem chart={chart} />)}
                 </tbody>
             </table>
         </div>
@@ -195,6 +195,7 @@ const Charts = ({ match, location }) => {
                 isVersionChecked={isVersionChecked}
                 isLevelChecked={isLevelChecked}
                 isDifficultyChecked={isDifficultyChecked}
+                limit={50}
             />}
         </>
     )
