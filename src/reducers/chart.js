@@ -2,15 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const chartSlice = createSlice({
   name: 'chart',
-  initialState: {
-    chart: null,
-    loading: false,
-    error: null
-  },
+  initialState: {},
   reducers: {
     LOAD_CHART: {
       reducer: (state, action) => {
-        state.loading = true;
+        state.chart = null;
         state.error = null;
       },
       prepare: (id) => {
@@ -21,9 +17,9 @@ const chartSlice = createSlice({
       state.loading = false;
       state.chart = data;
     },
-    LOAD_CHART_FAILURE(state, { payload }) {
+    LOAD_CHART_FAILURE(state, { payload: { error } }) {
       state.loading = false;
-      state.error = payload;
+      state.error = error;
     }
   },
 });

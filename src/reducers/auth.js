@@ -3,36 +3,31 @@ import { createSlice } from "@reduxjs/toolkit";
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    login: null,
-    loading: false,
-    error: null
+    logout: true
   },
   reducers: {
     LOGIN(state, action) {
-        state.loading = true;
-        state.error = null;
+        state.login = null;
+        state.loginError = null;
+        state.logout = true;
     },
     LOGIN_SUCCESS(state, { payload: { data } }) {
         const { id, uid, email } = data.user;
         state.login = { id, uid, email };
-        state.loading = false;
+        state.logout = false;
     },
-    LOGIN_FAILURE(state, { payload }) {
+    LOGIN_FAILURE(state, { payload: { error }}) {
         state.login = null;
-        state.error = payload;
-        state.loading = false;
+        state.loginError = error;
     },
     LOGOUT(state) {
-        state.loading = true;
         state.error = null;
     },
     LOGOUT_SUCCESS(state) {
         state.login = null;
-        state.loading = false;
     },
-    LOGOUT_FAILURE(state, { payload: { err } }) {
-        state.error = err;
-        state.loading = false;
+    LOGOUT_FAILURE(state, { payload: { error } }) {
+        state.logoutError = error;
     },
   },
 });
