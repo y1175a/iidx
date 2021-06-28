@@ -5,6 +5,7 @@ import authReducer from './auth';
 import userReducer from './user';
 import chartReducer from './chart';
 import chartsReducer from './charts';
+import loadingReducer from './loading';
 // import { loadingSlice } from './loading';
 // import { playdataSlice } from './playdata';
 // import { userSlice } from './user';
@@ -24,7 +25,7 @@ const rootReducer = combineReducers({
     chart: chartReducer,
     charts: chartsReducer,
     // playdata: playdataSlice.reducer,
-    // loading: loadingSlice.reducer,
+    loading: loadingReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
