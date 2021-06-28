@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { chartActions } from '../reducers/chart'
 
 const Chart = ({ match }) => {
-    const { chart, loading } = useSelector(({ chart }) => ({ chart: chart.chart, loading: chart.loading }));
+    const { chart, loading } = useSelector(({ chart, loading }) => ({ chart: chart.chart, loading: loading.loading }));
 
     const [ playData, setPlayData ] = useState({});
 
