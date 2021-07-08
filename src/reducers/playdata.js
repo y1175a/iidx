@@ -4,9 +4,14 @@ const playdataSlice = createSlice({
   name: 'playdata',
   initialState: {},
   reducers: {
-    LOAD_PLAYDATA(state) {
-      state.playdata = null;
-      state.error = null;
+    LOAD_PLAYDATA: {
+      reducer: (state) => {
+        state.playdata = null;
+        state.error = null;
+      },
+      prepare: (chartId, userId) => {
+        return { payload: { chartId, userId } }
+      }
     },
     LOAD_PLAYDATA_SUCCESS(state, { payload: { data } }) {
       state.playdata = data;

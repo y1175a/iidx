@@ -14,11 +14,9 @@ const chartSlice = createSlice({
       }
     },
     LOAD_CHART_SUCCESS(state, { payload: { data } }) {
-      state.loading = false;
       state.chart = data;
     },
     LOAD_CHART_FAILURE(state, { payload: { error } }) {
-      state.loading = false;
       state.error = error;
     }
   },

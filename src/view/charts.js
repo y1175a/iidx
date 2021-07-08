@@ -89,17 +89,17 @@ const ChartListItem = ({ chart }) => {
                  <Link to={`/chart/${chart.id}`}>{chart.title}</Link>
             </td>
             <td className='attr3'>{chart.artist}</td>
-            <td className='attr4'>{chart.diff}</td>
-            <td className='attr5'>{chart.lv}</td>
+            <td className='attr4'>{chart.difficulty}</td>
+            <td className='attr5'>{chart.level}</td>
             <td className='attr6'>{chart.notes}</td>
         </tr>
     );
 }
 
 const ChartsList = React.memo(({ list, isVersionChecked, isLevelChecked, isDifficultyChecked, limit }) => {
-    const filterList = list => list.filter(item => isVersionChecked.find(element => element.value.match(item.version)).checked &&
-                    isLevelChecked.find(element => element.value === item.lv).checked &&
-                    isDifficultyChecked.find(element => element.value.match(item.diff)).checked);
+    // const filterList = list => list.filter(item => isVersionChecked.find(element => element.value.match(item.version)).checked &&
+    //                 isLevelChecked.find(element => element.value === item.lv).checked &&
+    //                 isDifficultyChecked.find(element => element.value.match(item.diff)).checked);
 
     return (
         <div>
@@ -115,7 +115,8 @@ const ChartsList = React.memo(({ list, isVersionChecked, isLevelChecked, isDiffi
                     </tr>
                 </thead>
                 <tbody>
-                    {list && filterList(list).slice(0, limit).map(chart => <ChartListItem chart={chart} />)}
+                    {list && list.slice(0, limit).map(chart => <ChartListItem chart={chart} />)}
+                    {/* {list && filterList(list).slice(0, limit).map(chart => <ChartListItem chart={chart} />)} */}
                 </tbody>
             </table>
         </div>
@@ -142,7 +143,7 @@ const Charts = ({ match, location }) => {
         })
     );
 
-    const { charts } = useSelector(({ charts }) => ({ charts }));
+    const { charts, loading } = useSelector(({ charts, loading }) => ({ charts, loading: loading.loading }));
 
     const { list } = charts;
 
@@ -190,7 +191,7 @@ const Charts = ({ match, location }) => {
                 onLevelCheckBoxHandler={onLevelCheckBoxHandler}
                 onDifficultyCheckBoxHandler={onDifficultyCheckBoxHandler}
             />
-            {charts && <ChartsList 
+            {list && !loading && <ChartsList 
                 list={list}
                 isVersionChecked={isVersionChecked}
                 isLevelChecked={isLevelChecked}

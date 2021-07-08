@@ -5,11 +5,11 @@ const chartsSlice = createSlice({
   initialState: {},
   reducers: {
     LOAD_CHARTS(state) {
-        state.list = null;
-        state.error = null;
+      state.list = null;
+      state.error = null;
     },
     LOAD_CHARTS_SUCCESS(state, { payload: { data } }) {
-      state.list = data;
+      state.list = data.list;
     },
     LOAD_CHARTS_FAILURE(state, { payload: { error } }) {
       state.error = error;

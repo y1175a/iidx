@@ -6,9 +6,7 @@ import userReducer from './user';
 import chartReducer from './chart';
 import chartsReducer from './charts';
 import loadingReducer from './loading';
-// import { loadingSlice } from './loading';
-// import { playdataSlice } from './playdata';
-// import { userSlice } from './user';
+import playdataReducer from './playdata';
 
 /**
  * 
@@ -24,7 +22,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     chart: chartReducer,
     charts: chartsReducer,
-    // playdata: playdataSlice.reducer,
+    playdata: playdataReducer,
     loading: loadingReducer,
 })
 

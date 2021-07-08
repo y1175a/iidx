@@ -1,7 +1,7 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { loadingActions } from '../reducers/loading';
 import { userActions } from '../reducers/user';
-import * as userAPI from '../api/user';
+import * as userAPI from '../api/users';
 
 const { GET_USER, GET_USER_SUCCESS, GET_USER_FAILURE } = userActions;
 
