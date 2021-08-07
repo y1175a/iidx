@@ -9,7 +9,7 @@ const chartsSlice = createSlice({
       state.error = null;
     },
     LOAD_CHARTS_SUCCESS(state, { payload: { data } }) {
-      state.list = data.list;
+      state.list = data;
     },
     LOAD_CHARTS_FAILURE(state, { payload: { error } }) {
       state.error = error;
