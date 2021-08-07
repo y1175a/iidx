@@ -13,24 +13,10 @@ const Header = () => {
 
   const user = useSelector(state => state.user.user);
 
-  const { LOGIN, LOGOUT } = authActions;
-
-  const { GET_USER } = userActions;
+  const { LOGOUT } = authActions;
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!auth.login) {
-      dispatch(LOGIN());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (auth.login && !user){
-      dispatch(GET_USER(auth.login.id));
-    }
-  }, [auth.login]);
-
+  
   const onLogin = (e) => {
     e.preventDefault();
     window.open("http://localhost:4000/api/auth/login", "_self");
