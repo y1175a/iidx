@@ -183,14 +183,14 @@ const Charts = ({ match, location }) => {
 
     return (
         <>
-            <Filter
+            {/* <Filter
                 isVersionChecked={isVersionChecked}
                 isLevelChecked={isLevelChecked}
                 isDifficultyChecked={isDifficultyChecked}
                 onVersionCheckBoxHandler={onVersionCheckBoxHandler}
                 onLevelCheckBoxHandler={onLevelCheckBoxHandler}
                 onDifficultyCheckBoxHandler={onDifficultyCheckBoxHandler}
-            />
+            /> */}
             {list && !loading && <ChartsList 
                 list={list}
                 isVersionChecked={isVersionChecked}
