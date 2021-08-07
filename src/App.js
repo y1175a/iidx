@@ -1,3 +1,7 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authActions } from './reducers/auth';
+import { userActions } from './reducers/user';
 import { Route } from 'react-router-dom';
 import Header from './view/header';
 import Home from './view/home';
@@ -8,6 +12,28 @@ import Charts from './view/charts';
 import Chart from './view/chart';
 
 const App = () => {
+  const auth = useSelector(state => state.auth);
+
+  const user = useSelector(state => state.user.user);
+
+  const { LOGIN } = authActions;
+
+  const { GET_USER } = userActions;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!auth.login) {
+      dispatch(LOGIN());
+    }
+  }, []);
+
+  useEffect(() => {
+    if (auth.login && !user){
+      dispatch(GET_USER(auth.login.id));
+    }
+  }, [auth.login]);
+
   return (
     <div>
       <Route path="/" component={Header}/>
